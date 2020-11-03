@@ -1,0 +1,49 @@
+---
+title: "DDP_Project1"
+author: "Dr. G"
+date: "11/3/2020"
+output: ioslides_presentation
+---
+
+
+## Dating During a Pandemic
+
+### November 3, 2020
+
+```{r, echo = FALSE}
+library(leaflet)
+
+mm_icons <- makeIcon(
+     iconUrl = "m-m.png", 
+     iconWidth = 31*215/230, iconHeight = 31, 
+     iconAnchorX = 31*215/230/2, iconAnchorY = 16
+) 
+
+
+set.seed(12345)
+
+
+popups <- c("2020-09-30 Local Cantina", "2020-10-06 Cooper's Hawk", 
+            "2020-10-09 Wine and Canvas", "2020-10-14 Randy's", 
+            "2020-10-20 Randy's", "2020-10-24 Dr. G's", 
+            "2020-10-24 Stadium", "2020-10-25 Dr. G's", 
+            "2020-10-28 101 Beer Kitchen", "2020-11-02 Dr. G's")
+
+
+df <- data.frame(lat = c(40.025890, 40.054280, 40.066320, 40.061510, 
+                         40.061510, 40.063335, 40.020480, 40.063335, 
+                         40.051930, 40.063335),
+                 lng = c(-83.014320, -82.914980, -83.022880, -82.878590, 
+                         -82.878590, -83.014695, -82.879782, -83.014695, 
+                         -82.864504, -83.014695))
+
+
+
+
+df %>%
+     leaflet() %>%
+     addTiles() %>%
+     addMarkers(popup = popups, icon = mm_icons, clusterOptions = 
+                     markerClusterOptions())
+
+```
